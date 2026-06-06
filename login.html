@@ -8,35 +8,35 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif&display=swap');
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:'Inter',sans-serif;background:#0A1828;color:#E8F4F8;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+    body{font-family:'Inter',sans-serif;background:#FFFFFF;color:#0F172A;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
     .grid{display:grid;grid-template-columns:1.1fr 1fr;max-width:1080px;width:100%;gap:64px;align-items:center}
     @media (max-width:860px){.grid{grid-template-columns:1fr;gap:32px}.brand{order:2}}
     .brand{padding:24px}
     .logo{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:1.05rem;margin-bottom:40px}
     .logo svg{width:28px;height:28px}
-    .eyebrow{font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#5EEAD4;margin-bottom:16px}
-    .eyebrow::before{content:'///';color:#0F766E;margin-right:8px;font-weight:700}
+    .eyebrow{font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#0891B2;margin-bottom:16px}
+    .eyebrow::before{content:'///';color:#0891B2;margin-right:8px;font-weight:700}
     h1{font-family:'Instrument Serif',serif;font-size:clamp(2.2rem,4vw,3.2rem);line-height:1.05;font-weight:400;margin-bottom:20px}
-    h1 em{font-style:italic;color:#5EEAD4}
-    .lede{color:rgba(232,244,248,0.65);line-height:1.7;font-size:1.05rem;max-width:440px}
-    .card{background:rgba(255,255,255,0.04);border:1px solid rgba(15,118,110,0.4);border-radius:20px;padding:40px}
+    h1 em{font-style:italic;color:#0891B2}
+    .lede{color:rgba(15,23,42,0.65);line-height:1.7;font-size:1.05rem;max-width:440px}
+    .card{background:rgba(8,145,178,0.04);border:1px solid rgba(8,145,178,0.4);border-radius:20px;padding:40px}
     .card h2{font-family:'Instrument Serif',serif;font-size:1.7rem;font-weight:400;margin-bottom:8px}
-    .card h2 em{font-style:italic;color:#5EEAD4}
-    .card .sub{color:rgba(232,244,248,0.55);margin-bottom:28px;line-height:1.55;font-size:0.95rem}
-    label{display:block;font-size:0.78rem;font-weight:600;color:#5EEAD4;margin-bottom:8px;letter-spacing:0.08em;text-transform:uppercase}
-    input{width:100%;padding:15px 16px;border-radius:12px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.04);color:#E8F4F8;font:inherit;font-size:0.98rem}
-    input:focus{outline:none;border-color:#0F766E;background:rgba(255,255,255,0.07)}
-    button{width:100%;padding:16px 28px;border:none;border-radius:12px;background:#0F766E;color:#fff;font:inherit;font-weight:600;font-size:0.98rem;cursor:pointer;transition:background 0.2s,box-shadow 0.2s;margin-top:18px}
-    button:hover{background:#14B8A6;box-shadow:0 0 24px rgba(15,118,110,0.3)}
+    .card h2 em{font-style:italic;color:#0891B2}
+    .card .sub{color:rgba(15,23,42,0.55);margin-bottom:28px;line-height:1.55;font-size:0.95rem}
+    label{display:block;font-size:0.78rem;font-weight:600;color:#0891B2;margin-bottom:8px;letter-spacing:0.08em;text-transform:uppercase}
+    input{width:100%;padding:15px 16px;border-radius:12px;border:1px solid rgba(15,23,42,0.08);background:rgba(8,145,178,0.04);color:#0F172A;font:inherit;font-size:0.98rem}
+    input:focus{outline:none;border-color:#0891B2;background:rgba(8,145,178,0.07)}
+    button{width:100%;padding:16px 28px;border:none;border-radius:12px;background:#0891B2;color:#fff;font:inherit;font-weight:600;font-size:0.98rem;cursor:pointer;transition:background 0.2s,box-shadow 0.2s;margin-top:18px}
+    button:hover{background:#06B6D4;box-shadow:0 0 24px rgba(8,145,178,0.3)}
     button:disabled{opacity:0.6;cursor:wait}
     .msg{margin-top:18px;padding:14px 16px;border-radius:10px;font-size:0.9rem;line-height:1.45;display:none}
     .msg.show{display:block}
-    .msg.ok{background:rgba(15,118,110,0.16);border:1px solid rgba(94,234,212,0.5);color:#5EEAD4}
+    .msg.ok{background:rgba(8,145,178,0.16);border:1px solid rgba(94,234,212,0.5);color:#0891B2}
     .msg.err{background:rgba(220,38,38,0.12);border:1px solid rgba(248,113,113,0.5);color:#fca5a5}
-    .foot{margin-top:24px;text-align:center;font-size:0.88rem;color:rgba(232,244,248,0.5)}
-    .foot a{color:#5EEAD4;text-decoration:underline}
-    .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(15,118,110,0.12);border:1px solid rgba(15,118,110,0.3);border-radius:100px;padding:7px 14px;font-size:0.72rem;font-weight:600;color:#5EEAD4;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:24px}
-    .badge::before{content:'●';font-size:0.5rem;color:#0F766E}
+    .foot{margin-top:24px;text-align:center;font-size:0.88rem;color:rgba(15,23,42,0.5)}
+    .foot a{color:#0891B2;text-decoration:underline}
+    .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(8,145,178,0.12);border:1px solid rgba(8,145,178,0.3);border-radius:100px;padding:7px 14px;font-size:0.72rem;font-weight:600;color:#0891B2;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:24px}
+    .badge::before{content:'●';font-size:0.5rem;color:#0891B2}
   </style>
 </head>
 <body>
@@ -44,7 +44,7 @@
     <div class="brand">
       <a class="logo" href="/" aria-label="Miss Floss home">
         <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect width="28" height="28" rx="7" fill="#0F766E"/>
+          <rect width="28" height="28" rx="7" fill="#0891B2"/>
           <path d="M7 19V9l4 6 4-6v10" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M18.5 14v5" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
           <circle cx="18.5" cy="10.5" r="1.1" fill="#fff"/>

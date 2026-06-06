@@ -25,8 +25,8 @@
     html { font-size: 16px; scroll-behavior: smooth; }
     body {
       font-family: 'Inter', sans-serif;
-      background: #0A1828;
-      color: #E8F4F8;
+      background: #FFFFFF;
+      color: #0F172A;
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
     }
@@ -38,17 +38,17 @@
        DESIGN TOKENS
        ============================================================ */
     :root {
-      --bg:          #0A1828;
-      --bg-card:     rgba(255,255,255,0.04);
-      --bg-card-hover: rgba(255,255,255,0.07);
-      --accent:      #0F766E;
-      --accent-light:#5EEAD4;
-      --accent-glow: rgba(130, 88, 242, 0.3);
-      --text:        #E8F4F8;
-      --text-muted:  rgba(232,244,248,0.55);
-      --text-dim:    rgba(232,244,248,0.35);
-      --border:      rgba(255,255,255,0.08);
-      --border-accent: rgba(15,118,110,0.4);
+      --bg:          #FFFFFF;
+      --bg-card:     rgba(8,145,178,0.04);
+      --bg-card-hover: rgba(8,145,178,0.07);
+      --accent:      #0891B2;
+      --accent-light:#0891B2;
+      --accent-glow: rgba(8,145,178,0.2);
+      --text:        #0F172A;
+      --text-muted:  rgba(15,23,42,0.55);
+      --text-dim:    rgba(15,23,42,0.35);
+      --border:      rgba(15,23,42,0.08);
+      --border-accent: rgba(8,145,178,0.4);
       --radius:      20px;
       --radius-sm:   12px;
     }
@@ -143,7 +143,7 @@
       color: #fff;
     }
     .btn-primary:hover {
-      background: #14B8A6;
+      background: #06B6D4;
       box-shadow: 0 0 24px var(--accent-glow);
       transform: translateY(-1px);
     }
@@ -184,7 +184,7 @@
       border-color: var(--border-accent);
     }
     .card-highlight {
-      background: linear-gradient(135deg, rgba(15,118,110,0.12), rgba(15,118,110,0.04));
+      background: linear-gradient(135deg, rgba(8,145,178,0.12), rgba(8,145,178,0.04));
       border-color: var(--border-accent);
     }
 
@@ -208,7 +208,7 @@
       max-width: 1160px;
     }
     .nav-inner {
-      background: rgba(4, 1, 40, 0.85);
+      background: rgba(255,255,255,0.85);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border: 1px solid var(--border);
@@ -299,7 +299,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, transparent 40%, #0A1828 95%);
+      background: linear-gradient(to bottom, transparent 40%, #FFFFFF 95%);
     }
     .hero-glow {
       position: absolute;
@@ -308,7 +308,7 @@
       transform: translateX(-50%);
       width: 700px;
       height: 700px;
-      background: radial-gradient(circle, rgba(15,118,110,0.15) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(8,145,178,0.15) 0%, transparent 70%);
       pointer-events: none;
     }
     .hero-content {
@@ -323,8 +323,8 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(15,118,110,0.12);
-      border: 1px solid rgba(15,118,110,0.3);
+      background: rgba(8,145,178,0.12);
+      border: 1px solid rgba(8,145,178,0.3);
       border-radius: 100px;
       padding: 8px 18px;
       font-size: 0.8rem;
@@ -583,7 +583,7 @@
     .why-icon {
       width: 36px;
       height: 36px;
-      background: rgba(15,118,110,0.15);
+      background: rgba(8,145,178,0.15);
       border-radius: 8px;
       display: flex;
       align-items: center;
@@ -671,8 +671,8 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: rgba(15,118,110,0.12);
-      border: 1px solid rgba(15,118,110,0.25);
+      background: rgba(8,145,178,0.12);
+      border: 1px solid rgba(8,145,178,0.25);
       border-radius: 8px;
       padding: 6px 14px;
       font-size: 0.8rem;
@@ -708,7 +708,7 @@
     }
     .pricing-card-popular {
       border-color: var(--accent);
-      background: linear-gradient(135deg, rgba(15,118,110,0.1), rgba(15,118,110,0.04));
+      background: linear-gradient(135deg, rgba(8,145,178,0.1), rgba(8,145,178,0.04));
       position: relative;
     }
     .pricing-popular-badge {
@@ -866,7 +866,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, #0A1828 0%, transparent 30%, transparent 70%, #0A1828 100%);
+      background: linear-gradient(to bottom, #FFFFFF 0%, transparent 30%, transparent 70%, #FFFFFF 100%);
     }
     .cta-glow {
       position: absolute;
@@ -875,7 +875,7 @@
       transform: translateX(-50%);
       width: 800px;
       height: 600px;
-      background: radial-gradient(circle, rgba(15,118,110,0.12) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(8,145,178,0.12) 0%, transparent 70%);
       pointer-events: none;
     }
     .cta-content {
@@ -1006,7 +1006,7 @@
       text-transform: uppercase;
       transition: background 0.2s;
     }
-    .newsletter-btn:hover { background: #14B8A6; }
+    .newsletter-btn:hover { background: #06B6D4; }
     .footer-bottom {
       border-top: 1px solid var(--border);
       padding-top: 28px;
@@ -1027,7 +1027,7 @@
     .dot-grid {
       position: absolute;
       inset: 0;
-      background-image: radial-gradient(rgba(15,118,110,0.12) 1px, transparent 1px);
+      background-image: radial-gradient(rgba(8,145,178,0.12) 1px, transparent 1px);
       background-size: 32px 32px;
       pointer-events: none;
     }
@@ -1071,7 +1071,7 @@
     <div class="nav-inner">
       <a class="nav-logo" href="#hero-section" aria-label="Miss Floss home">
         <svg viewBox="0 0 28 28" fill="none" aria-hidden="true">
-          <rect width="28" height="28" rx="7" fill="#0F766E"/>
+          <rect width="28" height="28" rx="7" fill="#0891B2"/>
           <path d="M7 14c0-3.866 3.134-7 7-7s7 3.134 7 7" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
           <circle cx="14" cy="14" r="3" fill="#fff"/>
           <path d="M14 17v4M11 20h6" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
@@ -1086,8 +1086,8 @@
         <li><a href="#faq">FAQ</a></li>
       </ul>
       <div class="nav-cta">
-        <a href="/login" class="nav-login">Log in</a>
-        <a href="/signup" class="btn btn-primary">Get Started</a>
+        <a href="https://missfloss-app.netlify.app/auth/login" class="nav-login">Log in</a>
+        <a href="https://missfloss-app.netlify.app/auth/signup" class="btn btn-primary">Get Started</a>
       </div>
       <button class="nav-mobile-btn" onclick="toggleMobileMenu()" aria-label="Open menu">
         <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
@@ -1113,7 +1113,7 @@
         <strong>Miss Floss</strong> answers every call, books every appointment, runs your recall list, and verifies insurance — in English and French, 24/7. Built for Canadian dental clinics. Live in 7 days.
       </p>
       <div class="hero-actions">
-        <a href="/signup" class="btn btn-primary">Start 14-Day Trial</a>
+        <a href="https://missfloss-app.netlify.app/auth/signup" class="btn btn-primary">Start 14-Day Trial</a>
         <a href="#how-it-works" class="btn btn-outline">Hear a Live Demo Call</a>
       </div>
     </div>
@@ -1399,7 +1399,7 @@
             <li>Up to 1,500 inbound minutes / mo</li>
             <li>Email support</li>
           </ul>
-          <a href="/signup" class="btn btn-outline pricing-cta">Start 14-Day Trial</a>
+          <a href="https://missfloss-app.netlify.app/auth/signup" class="btn btn-outline pricing-cta">Start 14-Day Trial</a>
         </div>
 
         <!-- Pro — Most Popular -->
@@ -1419,7 +1419,7 @@
             <li>Up to 3,000 minutes / mo</li>
             <li>Priority chat + phone support</li>
           </ul>
-          <a href="/signup" class="btn btn-primary pricing-cta">Start 14-Day Trial</a>
+          <a href="https://missfloss-app.netlify.app/auth/signup" class="btn btn-primary pricing-cta">Start 14-Day Trial</a>
         </div>
 
         <!-- Billing -->
@@ -1438,7 +1438,7 @@
             <li>PMS sync (balance owed field)</li>
             <li>Plain-English billing FAQs</li>
           </ul>
-          <a href="/signup" class="btn btn-outline pricing-cta">Add to Plan</a>
+          <a href="https://missfloss-app.netlify.app/auth/signup" class="btn btn-outline pricing-cta">Add to Plan</a>
         </div>
 
         <!-- Multi-location -->
@@ -1559,7 +1559,7 @@
           Start a 14-day trial. Miss Floss will be answering calls and booking appointments for your clinic in 7 days. No setup fee. No long contract. Cancel anytime.
         </p>
         <div class="cta-actions">
-          <a href="/signup" class="btn btn-primary">Start 14-Day Trial</a>
+          <a href="https://missfloss-app.netlify.app/auth/signup" class="btn btn-primary">Start 14-Day Trial</a>
           <a href="mailto:hello@missfloss.ai" class="btn btn-outline">Book a Walkthrough</a>
         </div>
       </div>
@@ -1575,7 +1575,7 @@
         <div class="footer-brand">
           <a class="nav-logo" href="#hero-section" aria-label="Miss Floss home">
             <svg viewBox="0 0 28 28" fill="none" aria-hidden="true">
-              <rect width="28" height="28" rx="7" fill="#0F766E"/>
+              <rect width="28" height="28" rx="7" fill="#0891B2"/>
               <path d="M7 14c0-3.866 3.134-7 7-7s7 3.134 7 7" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
               <circle cx="14" cy="14" r="3" fill="#fff"/>
               <path d="M14 17v4M11 20h6" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
