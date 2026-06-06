@@ -4,15 +4,10 @@
 
 [[redirects]]
   from = "/app"
-  to = "/signup"
+  to = "/dashboard"
   status = 302
 
 [[redirects]]
   from = "/app/*"
-  to = "/signup"
-  status = 302
-
-[[redirects]]
-  from = "/login"
-  to = "/signup"
+  to = "/dashboard"
   status = 302

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Log in · Miss Floss</title>
+  <meta name="description" content="Log in to Miss Floss to manage your clinic's AI receptionist.">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif&display=swap');
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Inter',sans-serif;background:#0A1828;color:#E8F4F8;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+    .grid{display:grid;grid-template-columns:1.1fr 1fr;max-width:1080px;width:100%;gap:64px;align-items:center}
+    @media (max-width:860px){.grid{grid-template-columns:1fr;gap:32px}.brand{order:2}}
+    .brand{padding:24px}
+    .logo{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:1.05rem;margin-bottom:40px}
+    .logo svg{width:28px;height:28px}
+    .eyebrow{font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#5EEAD4;margin-bottom:16px}
+    .eyebrow::before{content:'///';color:#0F766E;margin-right:8px;font-weight:700}
+    h1{font-family:'Instrument Serif',serif;font-size:clamp(2.2rem,4vw,3.2rem);line-height:1.05;font-weight:400;margin-bottom:20px}
+    h1 em{font-style:italic;color:#5EEAD4}
+    .lede{color:rgba(232,244,248,0.65);line-height:1.7;font-size:1.05rem;max-width:440px}
+    .card{background:rgba(255,255,255,0.04);border:1px solid rgba(15,118,110,0.4);border-radius:20px;padding:40px}
+    .card h2{font-family:'Instrument Serif',serif;font-size:1.7rem;font-weight:400;margin-bottom:8px}
+    .card h2 em{font-style:italic;color:#5EEAD4}
+    .card .sub{color:rgba(232,244,248,0.55);margin-bottom:28px;line-height:1.55;font-size:0.95rem}
+    label{display:block;font-size:0.78rem;font-weight:600;color:#5EEAD4;margin-bottom:8px;letter-spacing:0.08em;text-transform:uppercase}
+    input{width:100%;padding:15px 16px;border-radius:12px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.04);color:#E8F4F8;font:inherit;font-size:0.98rem}
+    input:focus{outline:none;border-color:#0F766E;background:rgba(255,255,255,0.07)}
+    button{width:100%;padding:16px 28px;border:none;border-radius:12px;background:#0F766E;color:#fff;font:inherit;font-weight:600;font-size:0.98rem;cursor:pointer;transition:background 0.2s,box-shadow 0.2s;margin-top:18px}
+    button:hover{background:#14B8A6;box-shadow:0 0 24px rgba(15,118,110,0.3)}
+    button:disabled{opacity:0.6;cursor:wait}
+    .msg{margin-top:18px;padding:14px 16px;border-radius:10px;font-size:0.9rem;line-height:1.45;display:none}
+    .msg.show{display:block}
+    .msg.ok{background:rgba(15,118,110,0.16);border:1px solid rgba(94,234,212,0.5);color:#5EEAD4}
+    .msg.err{background:rgba(220,38,38,0.12);border:1px solid rgba(248,113,113,0.5);color:#fca5a5}
+    .foot{margin-top:24px;text-align:center;font-size:0.88rem;color:rgba(232,244,248,0.5)}
+    .foot a{color:#5EEAD4;text-decoration:underline}
+    .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(15,118,110,0.12);border:1px solid rgba(15,118,110,0.3);border-radius:100px;padding:7px 14px;font-size:0.72rem;font-weight:600;color:#5EEAD4;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:24px}
+    .badge::before{content:'●';font-size:0.5rem;color:#0F766E}
+  </style>
+</head>
+<body>
+  <div class="grid">
+    <div class="brand">
+      <a class="logo" href="/" aria-label="Miss Floss home">
+        <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="28" height="28" rx="7" fill="#0F766E"/>
+          <path d="M7 19V9l4 6 4-6v10" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M18.5 14v5" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+          <circle cx="18.5" cy="10.5" r="1.1" fill="#fff"/>
+        </svg>
+        Miss Floss
+      </a>
+      <div class="badge">Clinic admin</div>
+      <h1>Welcome back to <em>your clinic's front desk.</em></h1>
+      <p class="lede">Sign in to manage call recordings, listen to recall outcomes, edit your agent's script, and watch your front-desk hours stay free for the chair.</p>
+    </div>
+    <div class="card">
+      <h2>Log in with a <em>magic link.</em></h2>
+      <p class="sub">Enter the email you signed up with. We'll send a one-tap link — no password to remember.</p>
+      <form id="loginForm" autocomplete="on">
+        <label for="email">Email</label>
+        <input id="email" type="email" required autocomplete="email" placeholder="you@clinic.ca">
+        <button id="submit" type="submit">Send me a magic link</button>
+        <div id="msg" class="msg"></div>
+      </form>
+      <p class="foot">No account yet? <a href="/signup">Start a 14-day trial →</a></p>
+    </div>
+  </div>
+
+  <script type="module">
+    import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+    const SUPABASE_URL = 'https://uazwppofnntmdwqoqyuf.supabase.co'
+    const SUPABASE_ANON = 'sb_publishable_Ol7ebO4G9ImOhx73zoIrrg_QhyqUF5i'
+    const supa = createClient(SUPABASE_URL, SUPABASE_ANON)
+
+    const form = document.getElementById('loginForm')
+    const btn = document.getElementById('submit')
+    const msg = document.getElementById('msg')
+
+    // If already signed in, send to dashboard
+    const { data: { session } } = await supa.auth.getSession()
+    if (session) window.location.href = '/dashboard'
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault()
+      const email = document.getElementById('email').value.trim()
+      btn.disabled = true
+      btn.textContent = 'Sending...'
+      msg.className = 'msg'
+      try {
+        const { error } = await supa.auth.signInWithOtp({
+          email,
+          options: { emailRedirectTo: window.location.origin + '/dashboard' }
+        })
+        if (error) throw error
+        msg.className = 'msg ok show'
+        msg.textContent = 'Check ' + email + ' for your sign-in link. (It can land in spam on the first try.)'
+        btn.textContent = 'Link sent'
+      } catch (err) {
+        msg.className = 'msg err show'
+        msg.textContent = err.message || 'Something went wrong. Try again or email hello@missfloss.ai.'
+        btn.disabled = false
+        btn.textContent = 'Send me a magic link'
+      }
+    })
+  </script>
+</body>
+</html>

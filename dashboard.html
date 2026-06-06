@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard · Miss Floss</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif&display=swap');
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Inter',sans-serif;background:#0A1828;color:#E8F4F8;min-height:100vh}
+    .topbar{position:sticky;top:0;background:rgba(10,24,40,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.08);padding:14px 32px;display:flex;align-items:center;justify-content:space-between;z-index:10}
+    .logo{display:flex;align-items:center;gap:10px;font-weight:700}
+    .logo svg{width:26px;height:26px}
+    .who{display:flex;align-items:center;gap:14px;font-size:0.85rem;color:rgba(232,244,248,0.65)}
+    .signout{background:transparent;border:1px solid rgba(255,255,255,0.1);color:#E8F4F8;padding:8px 14px;border-radius:10px;cursor:pointer;font:inherit;font-size:0.82rem;font-weight:500}
+    .signout:hover{border-color:#5EEAD4;color:#5EEAD4}
+    .wrap{max-width:1200px;margin:0 auto;padding:40px 32px}
+    .eyebrow{font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#5EEAD4;margin-bottom:14px}
+    .eyebrow::before{content:'///';color:#0F766E;margin-right:8px;font-weight:700}
+    h1{font-family:'Instrument Serif',serif;font-size:2.6rem;line-height:1.1;font-weight:400;margin-bottom:8px}
+    h1 em{font-style:italic;color:#5EEAD4}
+    .lede{color:rgba(232,244,248,0.6);margin-bottom:36px}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:36px}
+    @media (max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}}
+    .stat{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-left:2px solid #0F766E;border-radius:14px;padding:22px}
+    .stat .label{font-size:0.78rem;color:rgba(232,244,248,0.55);letter-spacing:0.06em;text-transform:uppercase;font-weight:600;margin-bottom:8px}
+    .stat .num{font-family:'Instrument Serif',serif;font-size:2.4rem;line-height:1}
+    .stat .num em{font-style:italic;color:#5EEAD4}
+    .stat .delta{font-size:0.78rem;color:#5EEAD4;margin-top:6px}
+    .grid{display:grid;grid-template-columns:2fr 1fr;gap:20px}
+    @media (max-width:860px){.grid{grid-template-columns:1fr}}
+    .panel{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:18px;padding:28px}
+    .panel h2{font-family:'Instrument Serif',serif;font-size:1.45rem;font-weight:400;margin-bottom:6px}
+    .panel h2 em{font-style:italic;color:#5EEAD4}
+    .panel .sub{font-size:0.85rem;color:rgba(232,244,248,0.55);margin-bottom:22px}
+    .call{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.06)}
+    .call:last-child{border-bottom:none}
+    .dot{width:8px;height:8px;border-radius:50%;background:#5EEAD4;flex-shrink:0}
+    .dot.warn{background:#f59e0b}
+    .dot.miss{background:#ef4444}
+    .call .who{font-weight:600;font-size:0.92rem;color:#E8F4F8}
+    .call .meta{font-size:0.78rem;color:rgba(232,244,248,0.5);margin-top:2px}
+    .call .time{font-size:0.78rem;color:rgba(232,244,248,0.5);text-align:right}
+    .badge{display:inline-block;padding:3px 9px;border-radius:6px;font-size:0.7rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;margin-left:8px}
+    .badge.book{background:rgba(15,118,110,0.18);color:#5EEAD4}
+    .badge.recall{background:rgba(244,114,182,0.12);color:#fbcfe8}
+    .badge.urgent{background:rgba(239,68,68,0.14);color:#fca5a5}
+    .agent-card{display:flex;flex-direction:column;gap:12px}
+    .agent-row{display:flex;justify-content:space-between;font-size:0.88rem;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.06)}
+    .agent-row:last-child{border-bottom:none}
+    .agent-row .k{color:rgba(232,244,248,0.5);font-weight:500}
+    .agent-row .v{color:#E8F4F8;font-weight:600}
+    .pulse{display:inline-block;width:8px;height:8px;border-radius:50%;background:#5EEAD4;margin-right:8px;box-shadow:0 0 0 0 rgba(94,234,212,0.6);animation:pulse 2s infinite}
+    @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(94,234,212,0.6)}70%{box-shadow:0 0 0 10px rgba(94,234,212,0)}100%{box-shadow:0 0 0 0 rgba(94,234,212,0)}}
+    .stub-banner{background:linear-gradient(135deg,rgba(15,118,110,0.16),rgba(15,118,110,0.04));border:1px solid rgba(15,118,110,0.3);border-radius:14px;padding:18px 22px;margin-bottom:24px;font-size:0.88rem;color:rgba(232,244,248,0.75);line-height:1.55}
+    .stub-banner strong{color:#5EEAD4}
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <a href="/" class="logo" style="color:inherit;text-decoration:none">
+      <svg viewBox="0 0 28 28" fill="none" aria-hidden="true">
+        <rect width="28" height="28" rx="7" fill="#0F766E"/>
+        <path d="M7 19V9l4 6 4-6v10" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M18.5 14v5" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+        <circle cx="18.5" cy="10.5" r="1.1" fill="#fff"/>
+      </svg>
+      Miss Floss
+    </a>
+    <div class="who">
+      <span id="email" style="color:#5EEAD4;font-weight:600">loading…</span>
+      <button class="signout" id="signout">Sign out</button>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="eyebrow">Clinic dashboard</div>
+    <h1>Your agent is <em>live and answering.</em></h1>
+    <p class="lede"><span class="pulse"></span>Miss Floss is on duty. Below is everything happening on your line in the last 24 hours.</p>
+
+    <div class="stub-banner">
+      <strong>Demo data.</strong> This view is wired to your Miss Floss workspace; call records start populating the moment your number is ported. Until then we show a representative day from a Brampton clinic in our pilot cohort.
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="label">Calls answered</div>
+        <div class="num">47</div>
+        <div class="delta">↑ 12 vs yesterday</div>
+      </div>
+      <div class="stat">
+        <div class="label">Appointments booked</div>
+        <div class="num">19</div>
+        <div class="delta">↑ 4 vs yesterday</div>
+      </div>
+      <div class="stat">
+        <div class="label">Recalls rebooked</div>
+        <div class="num">8</div>
+        <div class="delta">↑ 3 vs yesterday</div>
+      </div>
+      <div class="stat">
+        <div class="label">Hours saved</div>
+        <div class="num"><em>6.4</em></div>
+        <div class="delta">staff time off the phone</div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="panel">
+        <h2>Recent <em>calls</em></h2>
+        <p class="sub">Live feed of every call Miss Floss has handled today, oldest first.</p>
+        <div class="call">
+          <div class="dot"></div>
+          <div>
+            <div class="who">Patricia M. <span class="badge book">Booked</span></div>
+            <div class="meta">Cleaning · Hygienist Sara · Thu 2:30 PM · 1m 47s call</div>
+          </div>
+          <div class="time">09:14</div>
+        </div>
+        <div class="call">
+          <div class="dot"></div>
+          <div>
+            <div class="who">Daniel K. <span class="badge book">Booked</span></div>
+            <div class="meta">New patient consult · Dr. Sharma · Fri 11:00 AM · 2m 03s call</div>
+          </div>
+          <div class="time">10:02</div>
+        </div>
+        <div class="call">
+          <div class="dot warn"></div>
+          <div>
+            <div class="who">Anonymous caller <span class="badge urgent">Escalated</span></div>
+            <div class="meta">Caller asked for human · Routed to front desk · 28s call</div>
+          </div>
+          <div class="time">10:41</div>
+        </div>
+        <div class="call">
+          <div class="dot"></div>
+          <div>
+            <div class="who">Maxine V. <span class="badge recall">Recall</span></div>
+            <div class="meta">6-month recall rebooked · Hygienist Anna · Wed 4:00 PM · 1m 12s call</div>
+          </div>
+          <div class="time">11:19</div>
+        </div>
+        <div class="call">
+          <div class="dot"></div>
+          <div>
+            <div class="who">Robert T. <span class="badge book">Booked</span></div>
+            <div class="meta">Crown follow-up · Dr. Sharma · Tue 9:30 AM · 1m 38s call</div>
+          </div>
+          <div class="time">11:53</div>
+        </div>
+        <div class="call">
+          <div class="dot miss"></div>
+          <div>
+            <div class="who">Billing query · Sun Life patient</div>
+            <div class="meta">Eligibility verified · Quoted $87 OOP · Patient pre-paid</div>
+          </div>
+          <div class="time">13:27</div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Agent <em>status</em></h2>
+        <p class="sub">Configuration applied last sync · 2 min ago</p>
+        <div class="agent-card">
+          <div class="agent-row"><span class="k">Workspace</span><span class="v">Brampton Family Dental</span></div>
+          <div class="agent-row"><span class="k">Voice</span><span class="v">Lily (en-CA, female)</span></div>
+          <div class="agent-row"><span class="k">Language</span><span class="v">EN + FR</span></div>
+          <div class="agent-row"><span class="k">PMS</span><span class="v">AbleDent</span></div>
+          <div class="agent-row"><span class="k">Hours</span><span class="v">Mon-Fri 8am-6pm + 24/7 overflow</span></div>
+          <div class="agent-row"><span class="k">Plan</span><span class="v">Pro · $699/mo CAD</span></div>
+          <div class="agent-row"><span class="k">Minutes used</span><span class="v">847 / 3,000</span></div>
+          <div class="agent-row"><span class="k">Status</span><span class="v" style="color:#5EEAD4">● Live</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+    const SUPABASE_URL = 'https://uazwppofnntmdwqoqyuf.supabase.co'
+    const SUPABASE_ANON = 'sb_publishable_Ol7ebO4G9ImOhx73zoIrrg_QhyqUF5i'
+    const supa = createClient(SUPABASE_URL, SUPABASE_ANON)
+
+    // Supabase puts the magic-link tokens in the URL hash on landing — let it persist the session
+    const { data: { session } } = await supa.auth.getSession()
+    if (!session) {
+      // No session — bounce to login
+      window.location.href = '/login'
+    } else {
+      document.getElementById('email').textContent = session.user.email
+    }
+    document.getElementById('signout').addEventListener('click', async () => {
+      await supa.auth.signOut()
+      window.location.href = '/'
+    })
+  </script>
+</body>
+</html>
